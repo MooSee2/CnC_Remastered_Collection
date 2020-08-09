@@ -119,7 +119,7 @@ static InfantryTypeClass const E1(
 	2,								// Frame of projectile launch.
 	2,								// Frame of projectile launch while prone.
 	50,							// Strength of infantry (in damage points).
-	1,								// Sight range.
+	2,								// Sight range.
 	100,							// Cost of infantry (in credits).
 	1,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
@@ -196,7 +196,7 @@ static InfantryTypeClass const E2(
 	14,							// Frame of projectile launch.
 	6,								// Frame of projectile launch while prone.
 	50,							// Strength of infantry (in damage points).
-	1,								// Sight range.
+	2,								// Sight range.
 	160,							// Cost of infantry (in credits).
 	3,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
@@ -352,7 +352,7 @@ static InfantryTypeClass const E4(
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
 	70,							// Strength of infantry (in damage points).
-	1,								// Sight range.
+	2,								// Sight range.
 	200,							// Cost of infantry (in credits).
 	5,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
@@ -428,7 +428,7 @@ static InfantryTypeClass const E5(
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
 	70,							// Strength of infantry (in damage points).
-	1,								// Sight range.
+	3,								// Sight range.
 	300,							// Cost of infantry (in credits).
 	98,							// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
@@ -504,7 +504,7 @@ static InfantryTypeClass const E7(
 	3,								// Frame of projectile launch.
 	3,								// Frame of projectile launch while prone.
 	25,							// Strength of infantry (in damage points).
-	2,								// Sight range.
+	3,								// Sight range.
 	500,							// Cost of infantry (in credits).
 	2,								// Scenario when they first appear.
 	80,75,						// Risk/Reward of this infantry unit.
