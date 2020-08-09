@@ -403,7 +403,7 @@ void BulletClass::AI(void)
 			if (Class->IsAntiAircraft && As_Aircraft(TarCom) && Distance(TarCom) < 0x0080) {
 				forced = true;
 
-				if (*this == BULLET_TOW) {
+				if (*this == BULLET_TOW || BULLET_AGM65) {
 					Strength += Strength/3;
 				} else {
 					Strength += Strength/2;

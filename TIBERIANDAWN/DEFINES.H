@@ -785,14 +785,16 @@ typedef enum BulletType : char {
 	BULLET_FLAME,			// Flame thrower flame.
 	BULLET_CHEMSPRAY,		// Chemical weapon spray.
 	BULLET_NAPALM,			// Napalm bomblet.
-	BULLET_GRENADE,		// Hand tossed grenade.
+	BULLET_GRENADE,			// Hand tossed grenade.
 	BULLET_LASER,			// Laser beam from obelisk
 	BULLET_NUKE_UP,  		// Nuclear Missile on its way down
 	BULLET_NUKE_DOWN,		// Nuclear Missile on its way up
-	BULLET_HONEST_JOHN,	// SSM with napalm warhead.
-	BULLET_SPREADFIRE,	// Chain gun bullets.
+	BULLET_HONEST_JOHN,		// SSM with napalm warhead.
+	BULLET_SPREADFIRE,		// Chain gun bullets.
 	BULLET_HEADBUTT,		// Stegosaurus, Triceratops head butt
 	BULLET_TREXBITE,		// Tyrannosaurus Rex's bite - especially bad for infantry
+
+	BULLET_AGM65,			// ATG anti-vehicle long range missile.
 
 #ifdef PETROGLYPH_EXAMPLE_MOD
 	BULLET_NUKE_LOB,		// Nuke projectile
@@ -1073,7 +1075,7 @@ typedef enum AircraftType : char {
 	AIRCRAFT_A10,					// Ground attack plane.
 	AIRCRAFT_HELICOPTER,			// Apache gunship.
 	AIRCRAFT_CARGO,				// Cargo plane.
-	AIRCRAFT_ORCA,					// Nod attack helicopter.
+	AIRCRAFT_ORCA,					// GDI attack helicopter.
 
 	AIRCRAFT_COUNT,
 	AIRCRAFT_NONE=-1,
@@ -1829,6 +1831,7 @@ typedef enum WeaponType : char {
 	WEAPON_HONEST_JOHN,
 	WEAPON_STEG,
 	WEAPON_TREX,
+	WEAPON_AGM65,
 
 #ifdef PETROGLYPH_EXAMPLE_MOD
 	WEAPON_NUKE_LOB,
@@ -2308,11 +2311,14 @@ typedef enum VocType : char{
 	VOC_DINOYES,		// Yes Sir in dino-speak.
 	VOC_DINOATK1,		// Dino attack sound.
 	VOC_DINODIE1,		// Dino die sound.
+	
 
-#ifdef PETROGLYPH_EXAMPLE_MOD
 	VOC_NUKE_LOB,		// Modded unit firing sound
-#endif
 			
+	VOC_ORCATO,			// Orca take off sound.
+	VOC_ORCALND,		// Orca landing sound.
+	VOC_ORCAMSL,		// Orca missile sound from Tiberian Sun.
+
 	VOC_COUNT,
 	VOC_BUILD_SELECT=VOC_TARGET,
 	VOC_FIRST=0

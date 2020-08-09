@@ -1,0 +1,7 @@
+﻿  Assembling win32lib\FACINGFF.ASM...
+  AADATA.CPP
+  AIRCRAFT.CPP
+  CONST.CPP
+  SCENARIO.CPP
+     Creating library ..\bin\Win32\TiberianDawn.lib and object ..\bin\Win32\TiberianDawn.exp
+  TiberianDawn.vcxproj -> F:\workspace\source\repos\CnC_Remastered_Collection\TiberianDawn\..\bin\Win32\TiberianDawn.dll

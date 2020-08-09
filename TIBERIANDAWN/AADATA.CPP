@@ -216,7 +216,7 @@ static AircraftTypeClass const OrcaHeli(
 		true,					// Is there a crew inside?
 	6,							// Number of shots it has (default).
 	125,						// The strength of this unit.
-	0,							// The range that it reveals terrain around itself.
+	3,							// The range that it reveals terrain around itself.
 	1200,						// Credit cost to construct.
 	10,						// The scenario this becomes available.
 	10,80,					// Risk, reward when calculating AI.
@@ -228,7 +228,7 @@ static AircraftTypeClass const OrcaHeli(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_GOOD,			// Who can own this aircraft type.
-	WEAPON_DRAGON,WEAPON_NONE,
+	WEAPON_AGM65, WEAPON_NONE,
 	ARMOR_STEEL,			// Armor type of this aircraft.
 	MPH_FAST,				// Maximum speed of aircraft.
 	4,							// Rate of turn.

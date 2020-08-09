@@ -1789,6 +1789,9 @@ int AircraftClass::Mission_Move(void)
 					}
 
 					if (distance < 0x0010) {
+						if (*this == AIRCRAFT_ORCA) {
+							Sound_Effect(VOC_ORCALND, Coord);
+						};
 						Status = LAND;
 					}
 					return(1);
@@ -2738,6 +2741,9 @@ bool AircraftClass::Process_Take_Off(void)
 	switch (Altitude) {
 		case 0:
 			Close_Door(5, 4);
+			if (*this == AIRCRAFT_ORCA) {
+				Sound_Effect(VOC_ORCATO, Coord);
+			};
 			PrimaryFacing = SecondaryFacing;
 			break;
 
