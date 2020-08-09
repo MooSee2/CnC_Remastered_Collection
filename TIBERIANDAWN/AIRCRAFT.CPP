@@ -2278,6 +2278,10 @@ int AircraftClass::Mission_Attack(void)
 			if (!Target_Legal(TarCom)) {
 				Status = RETURN_TO_BASE;
 			} else {
+				if (!Ammo) {
+					Status = RETURN_TO_BASE;
+					break;
+				}
 				Status = PICK_ATTACK_LOCATION;
 			}
 			break;
@@ -2289,6 +2293,10 @@ int AircraftClass::Mission_Attack(void)
 			if (!Target_Legal(TarCom)) {
 				Status = RETURN_TO_BASE;
 			} else {
+				if (!Ammo) {
+					Status = RETURN_TO_BASE;
+					break;
+				}
 				Assign_Destination(Good_Fire_Location(TarCom));
 				if (Target_Legal(NavCom)) {
 					Status = TAKE_OFF;
@@ -2418,7 +2426,7 @@ int AircraftClass::Mission_Attack(void)
 					Map[::As_Cell(TarCom)].Incoming(Coord, true);
 
 					if (Ammo) {
-						Status = PICK_ATTACK_LOCATION;
+						Status = FIRE_AT_TARGET;
 					} else {
 						Status = RETURN_TO_BASE;
 					}
@@ -2428,7 +2436,7 @@ int AircraftClass::Mission_Attack(void)
 					if (!Ammo) {
 						Status = RETURN_TO_BASE;
 					} else {
-						Status = PICK_ATTACK_LOCATION;
+						Status = FIRE_AT_TARGET;
 					}
 					break;
 			}
