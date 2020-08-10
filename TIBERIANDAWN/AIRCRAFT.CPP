@@ -1797,7 +1797,7 @@ int AircraftClass::Mission_Move(void)
 					return(1);
 				}
 
-				SecondaryFacing.Set_Desired(::Direction(Fire_Coord(0), As_Coord(NavCom)));
+				SecondaryFacing.Set_Desired(::Direction(Coord, As_Coord(NavCom)));
 			} else {
 				Assign_Destination(New_LZ(NavCom));
 				if (!Target_Legal(NavCom)) {
@@ -2362,7 +2362,7 @@ int AircraftClass::Mission_Attack(void)
 						Assign_Destination(TARGET_NONE);
 					}
 				} else {
-					SecondaryFacing.Set_Desired(::Direction(Fire_Coord(0), As_Coord(NavCom)));
+					SecondaryFacing.Set_Desired(::Direction(Coord, As_Coord(NavCom)));
 					return(1);
 				}
 			} else {
@@ -2416,6 +2416,11 @@ int AircraftClass::Mission_Attack(void)
 			switch (Can_Fire(TarCom, 0)) {
 				case FIRE_CLOAKED:
 					Do_Uncloak();
+					break;
+
+				case FIRE_RANGE:
+					Assign_Destination(Good_Fire_Location(TarCom));
+					Status = FLY_TO_POSITION;
 					break;
 
 				case FIRE_REARM:
@@ -3076,7 +3081,7 @@ int AircraftClass::Mission_Enter(void)
 					}
 					break;
 				} else {
-					SecondaryFacing.Set_Desired(::Direction(Fire_Coord(0), As_Coord(NavCom)));
+					SecondaryFacing.Set_Desired(::Direction(Coord, As_Coord(NavCom)));
 				}
 				return(3);
 			}
