@@ -375,9 +375,9 @@ void AircraftClass::Draw_It(int x, int y, WindowNumberType window)
 	**	If there is a door on this aircraft (Chinook), then adjust the
 	**	shape number to match the door open state.
 	*/
-	if (!Is_Door_Closed()) {
-		shapenum = 32 + Door_Stage();
-	}
+	//if (!Is_Door_Closed()) {
+	//	shapenum = 32 + Door_Stage();
+	//}
 
 	/*
 	**	Helicopters that are flying have a "bobbing" effect.
@@ -386,7 +386,7 @@ void AircraftClass::Draw_It(int x, int y, WindowNumberType window)
 	if (Altitude == FLIGHT_LEVEL && !Class->IsFixedWing) {
 		Jitter++;
 
-		static int _jitter[] = {0,0,0,0,1,1,1,0,0,0,0,0,-1,-1,-1,0};
+		static int _jitter[] = {0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,-1,-1,-1,0};
 		jitter = _jitter[Jitter % 16];
 	}
 
@@ -2230,7 +2230,7 @@ DirType AircraftClass::Pose_Dir(void) const
 {
 	Validate();
 	if (*this == AIRCRAFT_TRANSPORT) {
-		return(DIR_N);
+		return(DIR_NE);
 	}
 	return(DIR_NE);
 }
@@ -2351,18 +2351,32 @@ int AircraftClass::Mission_Attack(void)
 					Status = PICK_ATTACK_LOCATION;
 					return(1);
 				}
+				if (Is_Target_Building(NavCom) || Is_Target_Cell(NavCom)) {
+					int distance = Process_Fly_To(true);
 
-				int distance = Process_Fly_To(true);
-
-				if (distance < 0x0200) {
-					SecondaryFacing.Set_Desired(Direction(TarCom));
-
-					if (distance < 0x0010) {
+					if (distance < 0x0200) {
+						SecondaryFacing.Set_Desired(Direction(TarCom));
+						if (distance < 0x0010) {
+							Status = FIRE_AT_TARGET;
+							Assign_Destination(TARGET_NONE);
+						}
+					}
+					else {
+						SecondaryFacing.Set_Desired(::Direction(Coord, As_Coord(NavCom)));
+						return(1);
+					}
+				}
+				else {
+					IsHoming = true;
+					if (!PrimaryFacing.Is_Rotating()) {
+						PrimaryFacing.Set_Desired(Direction(TarCom));
+					}
+					if (Distance(TarCom) < 0x0200) {
+						IsHoming = false;
 						Status = FIRE_AT_TARGET;
 						Assign_Destination(TARGET_NONE);
 					}
-				} else {
-					SecondaryFacing.Set_Desired(::Direction(Coord, As_Coord(NavCom)));
+					Status = FLY_TO_POSITION;
 					return(1);
 				}
 			} else {
@@ -2720,14 +2734,14 @@ DirType AircraftClass::Desired_Load_Dir(ObjectClass * object, CELL & moveto) con
 {
 	Validate();
 	CELL center = Coord_Cell(Center_Coord());
-	for (int sweep = FACING_N; sweep < FACING_S; sweep++) {
-		moveto = Adjacent_Cell(center, FACING_S+sweep);
-		if (Map.In_Radar(moveto) && (Coord_Cell(object->Center_Coord()) == moveto || Map[moveto].Is_Generally_Clear())) return(DIR_N);
+	for (int sweep = FACING_N; sweep < FACING_SW; sweep++) {
+		moveto = Adjacent_Cell(center, FACING_SW+sweep);
+		if (Map.In_Radar(moveto) && (Coord_Cell(object->Center_Coord()) == moveto || Map[moveto].Is_Generally_Clear())) return(DIR_NW);
 
-		moveto = Adjacent_Cell(center, FACING_S-sweep);
-		if (Map.In_Radar(moveto) && (Coord_Cell(object->Center_Coord()) == moveto || Map[moveto].Is_Generally_Clear())) return(DIR_N);
+		moveto = Adjacent_Cell(center, FACING_SW-sweep);
+		if (Map.In_Radar(moveto) && (Coord_Cell(object->Center_Coord()) == moveto || Map[moveto].Is_Generally_Clear())) return(DIR_NW);
 	}
-	return(DIR_N);
+	return(DIR_NW);
 }
 
 
