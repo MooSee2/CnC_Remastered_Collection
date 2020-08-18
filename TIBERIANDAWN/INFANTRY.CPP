@@ -785,17 +785,16 @@ void InfantryClass::Per_Cell_Process(bool center)
  *                                                                                             *
  *    This is a support routine checks if the unit is in a Tiberium occupied cell.             *
  *    If it is then damage will be applied over time instead of the standard				   *
- *    damage per cell movement.																   *
- * INPUT:   target   -- The target to remove from the infantry unit's tracking systems.        *
- *                                                                                             *
- *          all      -- Is the target going away for good as opposed to just cloaking/hiding?  *
+ *    damage per cell movement.                                                                *
+ *																                               *
+ * INPUT:   none                                                                               *
  *                                                                                             *
  * OUTPUT:  none                                                                               *
  *                                                                                             *
  * WARNINGS:   none                                                                            *
  *                                                                                             *
  * HISTORY:                                                                                    *
- *   09/08/1994 JLB : Created.                                                                 *
+ *   08/12/2020 JPO : Created.                                                                 *
  *=============================================================================================*/
 
 int InfantryClass::In_Tiberium(void)
