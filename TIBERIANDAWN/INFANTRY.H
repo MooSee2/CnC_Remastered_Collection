@@ -218,6 +218,7 @@ class InfantryClass : public FootClass
 		virtual void Random_Animate(void);
 		virtual MoveType Can_Enter_Cell(CELL , FacingType =FACING_NONE) const;
 		virtual void Per_Cell_Process(bool center);
+		virtual int In_Tiberium(void);
 		virtual void Enter_Idle_Mode(bool initial=false);
 		virtual void Scatter(COORDINATE threat, bool forced =false, bool nokidding =false);
 
@@ -246,6 +247,13 @@ class InfantryClass : public FootClass
 		** Some additional padding in case we need to add data to the class and maintain backwards compatibility for save/load
 		*/
 		unsigned char SaveLoadPadding[32];
+
+		/*
+		**	This the thread processing timer. When this value counts down to zero, then
+		**	more script processing may occur.  Used to apply damage when exposed to Tiberium.
+		*/
+		TCountDownTimerClass Timer;
+
 };
 
 #endif

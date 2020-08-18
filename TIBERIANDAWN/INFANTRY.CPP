@@ -771,11 +771,44 @@ void InfantryClass::Per_Cell_Process(bool center)
 
 	/*
 	**	If over Tiberium, then this infantry unit will take damage.
-	*/
+	
 	if (IsActive && !IsInLimbo && center && cellptr->Land_Type() == LAND_TIBERIUM && *this != INFANTRY_E5) {
 		int damage = 2;
 		Take_Damage(damage, 0, WARHEAD_FIRE);
 	}
+	*/
+}
+
+
+/***********************************************************************************************
+ * InfantryClass::In_Tiberium -- If unit is in Tiberium, apply damage over time.               *
+ *                                                                                             *
+ *    This is a support routine checks if the unit is in a Tiberium occupied cell.             *
+ *    If it is then damage will be applied over time instead of the standard				   *
+ *    damage per cell movement.																   *
+ * INPUT:   target   -- The target to remove from the infantry unit's tracking systems.        *
+ *                                                                                             *
+ *          all      -- Is the target going away for good as opposed to just cloaking/hiding?  *
+ *                                                                                             *
+ * OUTPUT:  none                                                                               *
+ *                                                                                             *
+ * WARNINGS:   none                                                                            *
+ *                                                                                             *
+ * HISTORY:                                                                                    *
+ *   09/08/1994 JLB : Created.                                                                 *
+ *=============================================================================================*/
+
+int InfantryClass::In_Tiberium(void)
+{
+	Validate();
+	CellClass *cellptr = &Map[Coord_Cell(Coord)];
+
+	if (IsActive && !IsInLimbo && Timer.Expired() && (As_Cell(Coord) && cellptr->Land_Type() == LAND_TIBERIUM && *this != INFANTRY_E5)) {
+		int damage = 2;
+		Take_Damage(damage, 0, WARHEAD_FIRE);
+		return(Timer = TICKS_PER_SECOND * 30);
+	}
+	return(TICKS_PER_SECOND);
 }
 
 
@@ -1026,6 +1059,7 @@ void InfantryClass::AI(void)
 {
 	Validate();
 	FootClass::AI();
+	In_Tiberium();
 
 	if (IsUnloading) Mark(MARK_CHANGE);
 
@@ -1419,6 +1453,7 @@ void InfantryClass::AI(void)
 				Coord = Head_To_Coord();
 				Stop_Driver();
 				Per_Cell_Process(true);
+				
 
 				if (!IsActive || IsInLimbo) return;
 
